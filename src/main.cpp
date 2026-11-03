@@ -41,13 +41,13 @@ int main(int argc, char** argv)
         {
             do_sweep = true;
         }
-        else if (a == "--no-html");
+        else if (a == "--no-html")
         {
             write_html = false;
         }
         else if (a == "--lambda" && i +1 < argc) // if the user inputs their desired lamda and we have at least one input left
         {
-            params.lamda = std::atof(argv[++i]);
+            params.lambda = std::atof(argv[++i]);
         }
         else if (a == "--sigma" && i+1<argc) // if the user inputs their desired sigma and we have at least one input left
         {

@@ -6,6 +6,15 @@
 
 #include "graph_builder.hpp"
 
+namespace {
+
+std::string join(const std::string& dir, const std::string& name)
+{
+    if(dir.empty()) return name;
+    if(dir.back() == '/') return dir + name;
+    return dir + "/" + name;
+}
+
 // usage helper function prints the missing inputs as error
 void usage(const char* prog)
 {
@@ -14,6 +23,8 @@ void usage(const char* prog)
                  "[--sweep] [--lambda N] [--sigma N] [--no-html]\n",
                 prog);
 }
+
+} //namespace
 
 int main(int argc, char** argv)
 {
@@ -60,6 +71,8 @@ int main(int argc, char** argv)
             return 2;
         }
     }
+
+    
 
 
 

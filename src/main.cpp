@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "graph_builder.hpp"
+
 // usage helper function prints the missing inputs as error
 void usage(const char* prog)
 {
@@ -26,6 +28,7 @@ int main(int argc, char** argv)
     std::string image_path = argv[1];
     std::string seeds_path = argv[2];
     std::string out_dir = argv[3];
-    
+
+
 
 }

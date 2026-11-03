@@ -5,6 +5,7 @@
 #include <string>
 
 #include "graph_builder.hpp"
+#include "image.hpp"
 
 namespace {
 
@@ -72,7 +73,7 @@ int main(int argc, char** argv)
         }
     }
 
-    
+    Image img = load_image(image_path);
 
 
 

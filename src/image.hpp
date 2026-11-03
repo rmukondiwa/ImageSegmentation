@@ -29,3 +29,6 @@ struct Image {
         data[i + 2] = b;
     }
 };
+
+// Returns an empty Image on failure (check .empty()).
+Image load_image(const std::string& path);

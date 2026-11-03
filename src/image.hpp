@@ -21,4 +21,11 @@ struct Image {
     uint8_t g(int x, int y) const { return data[idx(x,y)+1]; }
     uint8_t b(int x, int y) const { return data[idx(x,y)+2]; }
 
-}
+    void set(int x, int y, uint8_t r, uint8_t g, uint8_t b)
+    {
+        size_t i = idx(x, y);
+        data[i + 0] = r;
+        data[i +1] = g;
+        data[i + 2] = b;
+    }
+};

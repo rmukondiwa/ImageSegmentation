@@ -1,6 +1,9 @@
 #pragma once
 #include <vector>
 
+#include "maxflow.hpp"
+#include "image.hpp"
+
 // label: 1 = foreground seed, 0 = background seed
 struct Seed {
     int x;
@@ -24,3 +27,7 @@ struct BuiltGraph {
     int width = 0;
     int height = 0;
 };
+
+// Node id for pixel (x,y) is y* width + x; s and t are the two extra ids.
+BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, 
+                  const BuildParams& params);

@@ -2,6 +2,7 @@
 
 #include <fstream>
 #include <sstream>
+#include <csassert>
 
 std::vector<Seed> load_seeds(const std::string& path)
 {
@@ -26,4 +27,20 @@ std::vector<Seed> load_seeds(const std::string& path)
     }
 
     return seeds; // [ Seed{}, Seed{},...]
+}
+
+BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const BuildParams& params)
+{
+    assert(!img.empty());
+    BuiltGraph graph;
+    graph.width = img.width;
+    graph.height = img.height;
+    const int W = img.width, H = img.height;
+    const int num_pixels = W * H;
+    graph.s = num_pixels;
+    graph.t = num_pixels;
+    
+    
+
+
 }

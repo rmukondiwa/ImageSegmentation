@@ -17,7 +17,6 @@ struct MaxFlow{
     std::vector<Edge> edges;            // flat edge list: edge i^1 is i's reverse
     std::vector<std::vector<int>> g;    // g[u] = indices into 'edges' leaving u
     std::vector<int> level;             // BFS level graph
-    std::vector<int> it;                // per-node DFS iterator into g[u]
-
+    std::vector<int> it;              // per-node DFS iterator into g[u]
     
-};
+   };

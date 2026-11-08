@@ -18,5 +18,6 @@ struct MaxFlow{
     std::vector<std::vector<int>> g;    // g[u] = indices into 'edges' leaving u
     std::vector<int> level;             // BFS level graph
     std::vector<int> it;              // per-node DFS iterator into g[u]
-    
+
+    void initializeGraph(int num_nodes);
    };

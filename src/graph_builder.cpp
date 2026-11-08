@@ -4,6 +4,14 @@
 #include <sstream>
 #include <cassert>
 
+
+namespace {
+
+    // Integer scaling for the data term so flow stay exact. A seeded pixel gets a 
+    // terminal edge of INF so the cut can never separate it from its terminal.
+    constexpr long long DATA_SCALE = 1000;
+    constexpr long long INF = 1LL << 40;
+} // end namespace
 std::vector<Seed> load_seeds(const std::string& path)
 {
     std::vector<Seed> seeds;
@@ -70,7 +78,12 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
     {
         for(int x = 0; x<W; ++x)
         {
-            
+            int id = pixelId(x, y);
+            long long cap_s, cap_t;
+            if(is_fg_seed[id])
+            {
+                cap_s = INF;
+            }
         }
     }
 

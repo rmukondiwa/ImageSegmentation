@@ -1,5 +1,5 @@
 #pragma once
-
+#include <vector>
 
 // label: 1 = foreground seed, 0 = background seed
 struct Seed {

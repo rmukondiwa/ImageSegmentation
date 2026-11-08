@@ -23,6 +23,22 @@ namespace {
 
         return std::sqrt(dr * dr + dg*dg + db*db);
     }
+
+    long long smooth_weight(const Image& img, int x0, int y0, int x1, int y1, const BuildParams& p)
+    {
+        double dr = img.r(x0,y0) - img.r(x1, y1);
+        double dg = img.g(x0,y0) - img.g(x1, y1);
+        double db = img.b(x0,y0) - img.b(x1, y1);
+        double d2 = dr*dr + dg*dg + db*db;
+        
+        // Gaussian Kernel Formula
+        double w = p.lambda * std::exp(-d2/ (2.0 * p.sigma * p.sigma));
+
+        // At least 1 so the smoothness graph stays connected (keeps tiny couplings).
+        long long iw = static_cast<long long>(std::llround(w));
+        return iw <1 ? 1 : iw;
+    }
+
 } // end namespace
 std::vector<Seed> load_seeds(const std::string& path)
 {
@@ -145,7 +161,12 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
     {
         for(int x = 0; x<W; ++x)
         {
-            
+            int id = pixelId(x,y);
+            if(x +1 < W)
+            {
+                long long w = smooth_weight(img, x, y, x+1, y, params);
+
+            }
         }
     }
 

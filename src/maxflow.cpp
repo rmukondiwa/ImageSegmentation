@@ -22,6 +22,7 @@ void MaxFlow::add_edge(int u, int v, long long cap)
     edges.push_back({u, 0});    // reverse edge starts saturated
 }
 
+// bfs from source to sink for all untraversed pathways
 bool MaxFlow::bfs(int s, int t)
 {
     std::fill(level.begin(), level.end(), -1);
@@ -54,7 +55,7 @@ long long MaxFlow::max_flow(int s, int t)
 
     while(bfs(s, t))
     {
-
+        
     }
 
 }

@@ -16,3 +16,12 @@ struct BuildParams {
     double lambda = 50.0;
     double sigma = 30.0;
 };
+
+struct BuiltGraph {
+    MaxFlow mf;
+    int s = 0;  // source node id (foreground terminal)
+    int t = 0;  // sink node id (background terminal)
+    int width = 0;
+    int height = 0;
+
+}

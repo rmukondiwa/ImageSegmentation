@@ -2,6 +2,7 @@
 
 #include <cassert>
 #include <algorithm>
+#include <queue>
 
 
 void MaxFlow::initializeGraph(int num_nodes)
@@ -23,7 +24,27 @@ void MaxFlow::add_edge(int u, int v, long long cap)
 
 bool MaxFlow::bfs(int s, int t)
 {
-    
+    std::fill(level.begin(), level.end(), -1);
+    std::queue<int> q;
+    q.push(s);
+    level[s] = 0;
+
+    while(!q.empty())
+    {
+        int u = q.front();
+        q.pop();
+        for(int id : adjList[u])
+        {
+            const Edge& e = edges[id];
+            if(e.cap > 0 && level[e.to]<0)
+            {
+                level[e.to] = level[u] +1;
+                q.push(e.to);
+            }
+        }
+    }
+
+    return level[t] >=0;
 }
 
 long long MaxFlow::max_flow(int s, int t)

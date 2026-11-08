@@ -24,4 +24,6 @@ std::vector<Seed> load_seeds(const std::string& path)
             seeds.push_back(s);
         }
     }
+
+    return seeds; // [ Seed{}, Seed{},...]
 }

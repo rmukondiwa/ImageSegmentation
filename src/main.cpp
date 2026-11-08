@@ -85,6 +85,11 @@ int main(int argc, char** argv)
         std::fprintf(stderr, "no seeds loaded from '%s' (need 'x y label' lines)\n", seeds_path.c_str());
         return 1;
     }
+
+    std::printf("image %dx%d, %zu seeds, lambda=%.2f sigma=%.2f\n", img.width,
+                img.height, seeds.size(), params.lambda, params.sigma);
+
+    SegResult seg = segment(img, seeds, params);
     
     
 

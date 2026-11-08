@@ -2,7 +2,7 @@
 
 #include <fstream>
 #include <sstream>
-#include <csassert>
+#include <cassert>
 
 std::vector<Seed> load_seeds(const std::string& path)
 {
@@ -39,8 +39,32 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
     const int num_pixels = W * H;
     graph.s = num_pixels;
     graph.t = num_pixels;
-    
-    
+    graph.mf.initializeGraph(num_pixels+2);     // the +2 for the source and sink nodes
+
+    auto pixelId = [W](int x, int y){
+        return y * W + x;
+    };
+
+    // Collect seed colors for the (dead-simple) nearest-seed color model.
+    std::vector<std::array<int, 3>> fg_colors, bg_colors;
+    std::vector<bool> is_fg_seed(num_pixels, false), is_bg_seed(num_pixels, false);
+    for (const Seed& s : seeds)
+    {
+        if(s.x < 0 || s.x >= W || s.y < 0 || s.y >= H) continue;
+        int id = pixelId(s.x, s.y);
+
+        if(s.label == 1)
+        {
+            fg_colors.push_back({img.r(s.x, s.y), img.g(s.x, s.y), img.b(s.x, s.y)});
+            is_fg_seed[id] = true;
+        }
+        else
+        {
+            bg_colors.push_back({img.r(s.x, s.y), img.g(s.x, s.y), img.b(s.x, s.y)});
+            is_bg_seed[id] = true;
+        }
+    }
+
 
 
 }

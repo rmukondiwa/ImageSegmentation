@@ -74,7 +74,11 @@ int main(int argc, char** argv)
     }
 
     Image img = load_image(image_path);
-
+    if (img.empty())
+    {
+        std::fprintf(stderr, "could not load image '%s'\n", image_path.c_str());
+        return 1;
+    }
 
 
 }

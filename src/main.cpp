@@ -90,6 +90,7 @@ int main(int argc, char** argv)
     std::printf("image %dx%d, %zu seeds, lambda=%.2f sigma=%.2f\n", img.width,
                 img.height, seeds.size(), params.lambda, params.sigma);
 
+    // dinic's alg entry point
     SegResult seg = segment(img, seeds, params);
     
     

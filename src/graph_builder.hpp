@@ -23,5 +23,4 @@ struct BuiltGraph {
     int t = 0;  // sink node id (background terminal)
     int width = 0;
     int height = 0;
-
-}
+};

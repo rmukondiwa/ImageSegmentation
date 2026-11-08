@@ -110,6 +110,27 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
                 {
                     distToFg = std::min(distToFg, color_dist(img, x, y, color[0], color[1], color[2]));
                 }
+                for (const auto& color : fg_colors)
+                {
+                    distToBg = std::min(distToBg, color_dist(img, x, y, color[0], color[1], color[2]));
+                }
+                if(fg_colors.empty())
+                {
+                    distToFg = 1.0, distToBg = 0.0; // no fg info -> all bg
+                }
+                if(bg_colors.empty())
+                {
+                    distToFg = 0.0, distToBg = 1.0; // no bg info -> all fg
+                }
+
+                // doing a simple distance-ratio normalization
+                // Pfg = distanceToBg/ distanceToFg + distanceToBg
+                // Pbg = distanceToFg/ distanceToFg + distanceToBg
+                double denom = distToFg + distToBg;
+                if (denom < 1e-9) denom = 1e9;
+
+                double p_fg = distToBg / denom;
+                double p_bg = distToBg / denom;
             }
             
         }

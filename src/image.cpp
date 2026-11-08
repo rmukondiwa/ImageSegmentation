@@ -20,4 +20,8 @@ Image load_image(const std::string& path)
         return Image{};
     }
 
+    Image img(w, h);
+    img.data.assign(raw, raw + static_cast<size_t>(w)*h*3);
+    stbi_image_free(raw);
+    return img;
 }

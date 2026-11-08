@@ -131,8 +131,12 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
 
                 double p_fg = distToBg / denom;
                 double p_bg = distToBg / denom;
+
+                cap_s = static_cast<long long>(std::llround(p_fg * DATA_SCALE));
+                cap_t = static_cast<long long>(std::llround(p_bg * DATA_SCALE));
             }
-            
+            if(cap_s > 0) graph.mf.add_edge(graph.s, id, cap_s);
+            if(cap_t > 0) graph.mf.add_edge(id, graph.t, cap_t);            
         }
     }
 

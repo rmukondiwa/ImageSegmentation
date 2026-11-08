@@ -80,6 +80,12 @@ int main(int argc, char** argv)
         return 1;
     }
     std::vector<Seed> seeds = load_seeds(seeds_path);
+    if(seeds.empty())
+    {
+        std::fprintf(stderr, "no seeds loaded from '%s' (need 'x y label' lines)\n", seeds_path.c_str());
+        return 1;
+    }
+    
     
 
 

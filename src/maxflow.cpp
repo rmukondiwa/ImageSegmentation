@@ -48,6 +48,12 @@ bool MaxFlow::bfs(int s, int t)
     return level[t] >=0;
 }
 
+//Push as much flow as possible from u to t along the level graph.
+long long MaxFlow::dfs(int u, int t, long long pushed)
+{
+    
+}
+
 long long MaxFlow::max_flow(int s, int t)
 {
     assert(s != t);
@@ -55,7 +61,13 @@ long long MaxFlow::max_flow(int s, int t)
 
     while(bfs(s, t))
     {
+        std::fill(dfs_iter.begin(), dfs_iter.end(), 0);
+        while(true)
+        {
+            long long pushed = dfs(s, t, LLONG_MAX);
+            if(pushed == 0) break;
 
+        }
     }
 
 }

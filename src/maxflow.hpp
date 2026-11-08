@@ -28,4 +28,5 @@ struct MaxFlow{
 
     private:
         bool bfs(int s, int t);
+        long long dfs(int u, int t, long long pushed);
    };

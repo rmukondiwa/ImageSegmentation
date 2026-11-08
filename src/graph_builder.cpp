@@ -3,6 +3,9 @@
 #include <fstream>
 #include <sstream>
 #include <cassert>
+#include <limits>
+#include <algorithm>
+#include <cmath>
 
 
 namespace {
@@ -11,6 +14,15 @@ namespace {
     // terminal edge of INF so the cut can never separate it from its terminal.
     constexpr long long DATA_SCALE = 1000;
     constexpr long long INF = 1LL << 40;
+
+    double color_dist(const Image& img, int x, int y, int r, int g, int b)
+    {
+        double dr = img.r(x,y) - r;
+        double dg = img.g(x,y) - g;
+        double db = img.b(x,y); -b;
+
+        return std::sqrt(dr * dr + dg*dg + db*db);
+    }
 } // end namespace
 std::vector<Seed> load_seeds(const std::string& path)
 {
@@ -82,8 +94,24 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
             long long cap_s, cap_t;
             if(is_fg_seed[id])
             {
-                cap_s = INF;
+                cap_s = INF;    // hard constraint: must stay on source (fg) side
+                cap_t = 0;
             }
+            else if (is_bg_seed[id])
+            {
+                cap_s = 0;
+                cap_t = INF;    // hard constraint: must stay on sink (bg) side
+            }
+            else
+            {
+                double distToFg = std::numeric_limits<double>::max();
+                double distToBg = std::numeric_limits<double>::max();
+                for (const auto& color : fg_colors)
+                {
+                    distToFg = std::min(distToFg, color_dist(img, x, y, color[0], color[1], color[2]));
+                }
+            }
+            
         }
     }
 

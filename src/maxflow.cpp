@@ -1,5 +1,8 @@
 #include "maxflow.hpp"
 
+#include <cassert>
+#include <algorithm>
+
 
 void MaxFlow::initializeGraph(int num_nodes)
 {
@@ -18,7 +21,19 @@ void MaxFlow::add_edge(int u, int v, long long cap)
     edges.push_back({u, 0});    // reverse edge starts saturated
 }
 
-long long MaxFlow::max_flow(int s, int t)
+bool MaxFlow::bfs(int s, int t)
 {
     
+}
+
+long long MaxFlow::max_flow(int s, int t)
+{
+    assert(s != t);
+    long long flow = 0;
+
+    while(bfs(s, t))
+    {
+
+    }
+
 }

@@ -25,4 +25,7 @@ struct MaxFlow{
     void add_edge(int u, int v, long long cap);
 
     long long max_flow(int s, int t);
+
+    private:
+        bool bfs(int s, int t);
    };

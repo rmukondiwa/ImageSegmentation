@@ -6,6 +6,7 @@
 
 #include "graph_builder.hpp"
 #include "image.hpp"
+#include "segment.hpp"
 
 namespace {
 

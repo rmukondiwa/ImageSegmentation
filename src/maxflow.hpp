@@ -15,9 +15,12 @@ struct MaxFlow{
 
     int n = 0;
     std::vector<Edge> edges;            // flat edge list: edge i^1 is i's reverse
-    std::vector<std::vector<int>> g;    // g[u] = indices into 'edges' leaving u
+    std::vector<std::vector<int>> adjList;    // g[u] = indices into 'edges' leaving u
     std::vector<int> level;             // BFS level graph
     std::vector<int> it;              // per-node DFS iterator into g[u]
 
     void initializeGraph(int num_nodes);
+
+    // Adds forward edge u->v with capacity 'cap' and a reverse v->u with capacity 0
+    void add_edge(int u, int v, long long cap);
    };

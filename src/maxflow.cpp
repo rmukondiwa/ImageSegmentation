@@ -51,6 +51,7 @@ bool MaxFlow::bfs(int s, int t)
 //Push as much flow as possible from u to t along the level graph.
 long long MaxFlow::dfs(int u, int t, long long pushed)
 {
+    if (u==t) return pushed;
     
 }
 

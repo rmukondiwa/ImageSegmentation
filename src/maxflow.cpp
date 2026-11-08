@@ -17,3 +17,8 @@ void MaxFlow::add_edge(int u, int v, long long cap)
     adjList[v].push_back(static_cast<int>(edges.size()));
     edges.push_back({u, 0});    // reverse edge starts saturated
 }
+
+long long MaxFlow::max_flow(int s, int t)
+{
+    
+}

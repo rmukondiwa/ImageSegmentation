@@ -23,4 +23,6 @@ struct MaxFlow{
 
     // Adds forward edge u->v with capacity 'cap' and a reverse v->u with capacity 0
     void add_edge(int u, int v, long long cap);
+
+    long long max_flow(int s, int t);
    };

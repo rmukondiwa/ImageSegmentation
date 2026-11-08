@@ -165,10 +165,17 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
             if(x +1 < W)
             {
                 long long w = smooth_weight(img, x, y, x+1, y, params);
-
+                graph.mf.add_edge(id, pixelId(x+1, y), w);
+                graph.mf.add_edge(pixelId(x+1,y), id, w);
+            }
+            if(y +1 < H)
+            {
+                long long w = smooth_weight(img, x, y, x, y+1, params);
+                graph.mf.add_edge(id, pixelId(x, y+1), w);
+                graph.mf.add_edge(pixelId(x,y+1), id, w);
             }
         }
     }
 
-
+    return graph;
 }

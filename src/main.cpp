@@ -79,6 +79,8 @@ int main(int argc, char** argv)
         std::fprintf(stderr, "could not load image '%s'\n", image_path.c_str());
         return 1;
     }
+    std::vector<Seed> seeds = load_seeds(seeds_path);
+    
 
 
 }

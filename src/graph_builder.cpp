@@ -65,6 +65,15 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
         }
     }
 
+    // Data Terms: terminal edges s->p ("looks fg") and p->t ("looks bg");
+    for (int y = 0; y<H; ++y)
+    {
+        for(int x = 0; x<W; ++x)
+        {
+            
+        }
+    }
+
 
 
 }

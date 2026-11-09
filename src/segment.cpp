@@ -13,4 +13,11 @@ SegResult segment(const Image& img, const std::vector<Seed>& seeds,
     // Pixels still reachable from s in the residual graph are the foreground
     // (s-side of the min cut).
     std::vector<bool> side = graph.mf.min_cut_side(graph.s);
+    res.fg.assign(static_cast<size_t>(res.width)*res.height, false);
+    for(int i = 0; i<res.width*res.height; ++i)
+    {
+        res.fg[i] = side[i];
+    }
+
+    return res;
 }

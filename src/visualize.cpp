@@ -1,7 +1,12 @@
 #include "visualize.hpp"
 
 namespace viz{
-
+namespace{
+    bool is_fg(const SegResult& seg, int x, int y)
+    {
+        return seg.fg[static_cast<size_t>(y)*seg.width +x];
+    }
+} // namespace
 
     Image seed_overlay(const Image& originalImg, const std::vector<Seed>& seeds)
     {
@@ -32,11 +37,21 @@ namespace viz{
 
             return out;
         }
+    }
 
-        Image mask_image(const SegResult& seg)
+    Image mask_image(const SegResult& seg)
+    {
+        Image out(seg.width, seg.height);
+        for(int y = 0; y<seg.height; ++y)
         {
-            
+            for(int x = 0; x<seg.width; ++x)
+            {
+                uint8_t v = is_fg(seg, x, y) ? 255 : 0;
+                out.set(x,y,v,v,v);
+            }
         }
 
+        return out;
     }
+
 }

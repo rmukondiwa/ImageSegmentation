@@ -53,6 +53,7 @@ bool MaxFlow::bfs(int s, int t)
 long long MaxFlow::dfs(int u, int t, long long pushed)
 {
     if (u==t) return pushed;
+    std::cout<<"base case not called"<<std::endl;
 
     // dfs_iter[u] persists across calls within a phase so we never re-scan dead edges
     for(int& i = dfs_iter[u]; i< static_cast<int>(adjList[u].size()); ++i)
@@ -85,7 +86,7 @@ long long MaxFlow::max_flow(int s, int t)
         std::fill(dfs_iter.begin(), dfs_iter.end(), 0);
         while(true)
         {
-            std::cout<< "dfs"<<std::endl;
+            std::cout<< "u: " << s << "t: " << t<<std::endl;
             long long pushed = dfs(s, t, LLONG_MAX);
             if(pushed == 0) break;
             std::cout<< "pushed: " << pushed <<std::endl;

@@ -76,7 +76,7 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
     const int W = img.width, H = img.height;
     const int num_pixels = W * H;
     graph.s = num_pixels;
-    graph.t = num_pixels;
+    graph.t = num_pixels+1;
     graph.mf.initializeGraph(num_pixels+2);     // the +2 for the source and sink nodes
 
     auto pixelId = [W](int x, int y){

@@ -98,6 +98,7 @@ int main(int argc, char** argv)
     //Build and write artifacts.
     Image seeds_img = viz::seed_overlay(img, seeds);
     Image mask_img = viz::mask_image(seg);
-
+    Image boundary_img = viz::boundary_overlay(img, seg);
+    
 
 }

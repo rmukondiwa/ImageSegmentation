@@ -54,4 +54,19 @@ namespace{
         return out;
     }
 
+    Image boundary_overlay(const Image& originalImg, const SegREsult& seg)
+    {
+        Image out = originalImg;
+        for(int y = 0; y< seg.height; ++y)
+        {
+            for(int x = 0; x<seg.width; ++x)
+            {
+                if(on_boundary(seg, x, y))
+                {
+                    
+                }
+            }
+        }
+    }
+
 }

@@ -11,4 +11,7 @@ namespace viz {
 
     // White foreground, black background
     Image mask_image(const SegResult& seg);
+
+    // The hero shot: bright contour along the mask boundary, over the original.
+    Image boundary_overlay(const Image& originalImg, const SegResult& seg);
 }

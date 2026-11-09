@@ -1,0 +1,6 @@
+/build/
+
+# keep sample gallery, ignore other generated artifacts
+/results/*
+!/results/index.html
+!/results/composite.png

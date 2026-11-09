@@ -7,6 +7,7 @@
 #include "graph_builder.hpp"
 #include "image.hpp"
 #include "segment.hpp"
+#include "visualize.hpp"
 
 namespace {
 
@@ -68,7 +69,7 @@ int main(int argc, char** argv)
         }
         else
         {
-            std::fprintf(stderr, "unkown/incomplete arg: %s\n", std::to_string(a));
+            std::fprintf(stderr, "unkown/incomplete arg: %s\n", a.c_str());
             usage(argv[0]);
             return 2;
         }
@@ -94,7 +95,8 @@ int main(int argc, char** argv)
     SegResult seg = segment(img, seeds, params);
     std::printf("max-flow (min-cut capacity) = %lld\n", seg.flow);
     
-    
+    //Build and write artifacts.
+    Image seeds_img = viz::seed_overlay(img, seeds);
 
 
 }

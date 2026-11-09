@@ -19,6 +19,8 @@ namespace{
             if(neighbor_x < 0 || neighbor_x >= seg.width || neighbor_y<0 || neighbor_y >= seg.height) continue;
             if(is_fg(seg, neighbor_x, neighbor_y) != center) return true;
         }
+
+        return false;
     }
 } // namespace
 

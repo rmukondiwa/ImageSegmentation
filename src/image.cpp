@@ -34,4 +34,13 @@ bool save_png(const std::string& path, const Image& img)
                     path.c_str());
         return false;
     }
+
+    int ok = stbi_write_png(path.c_str(), img.width, img.height, 3,
+                            img.data.data(), img.width*3);
+    if (!ok)
+    {
+        std::fprintf(stderr, "save_png: failed to write '%s'\n", path.c_str());
+        return false;
+    }
+    return true;
 }

@@ -102,4 +102,6 @@ int main(int argc, char** argv)
     Image cutout_img = viz::cutout(img, seg);
     Image comp = viz::composite({img, seeds_img, mask_img, boundary_img, cutout_img});
 
+    save_png()
+
 }

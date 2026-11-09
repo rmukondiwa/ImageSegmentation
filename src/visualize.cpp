@@ -116,7 +116,33 @@ namespace{
 
     Image composite(const std::vector<Image>& panels)
     {
-        
+        if(panels.empty()) return Image{};
+
+        int total_w = 0, max_h = 0;
+
+        const int gap = 6;  // black separator between panels
+        for(const Image&p : panels)
+        {
+            total_w += p.width;
+            max_h = std::max(max_h, p.height);
+        }
+
+        total_w += gap * static_cast<int>(panels.size()-1);
+        Image out(total_w, max_h);      // starts all-black( good separators/padding)
+        int ox = 0;
+        for(const Image& p : panels)
+        {
+            for(int y = 0; y<p.height; ++y)
+            {
+                for(int x = 0; x<p.width; ++x)
+                {
+                    out.set(ox+x, y, p.r(x,y), p.g(x,y), p.b(x,y));
+                }
+            }
+            ox += p.width + gap;
+        }
+
+        return out;
     }
 
 }

@@ -32,3 +32,4 @@ struct Image {
 
 // Returns an empty Image on failure (check .empty()).
 Image load_image(const std::string& path);
+bool save_png(const std::string& path, const Image& img);

@@ -94,5 +94,26 @@ long long MaxFlow::max_flow(int s, int t)
 
 std::vector<bool> MaxFlow::min_cut_side(int s) const
 {
-    
+    std::vector<bool> reachable(n, false);
+    std::queue<int> q;
+    reachable[s] = true;
+    q.push(s);
+
+    while(!q.empty())
+    {
+        int u = q.front();
+        q.pop();
+
+        for(int id : adjList[u])
+        {
+            const Edge& e = edges[id];
+            if(e.cap > 0 && !reachable[e.to])
+            {
+                reachable[e.to] = true;
+                q.push(e.to);
+            }
+        }
+    }
+
+    return reachable;
 }

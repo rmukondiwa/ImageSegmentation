@@ -4,7 +4,6 @@
 #include <cstdio>
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "graph_builder.hpp"
 #include "image.hpp"
@@ -92,7 +91,6 @@ int main(int argc, char** argv)
 
     std::printf("image %dx%d, %zu seeds, lambda=%.2f sigma=%.2f\n", img.width,
                 img.height, seeds.size(), params.lambda, params.sigma);
-    std::cout<<"about to start segmentation"<<std::endl;
     // dinic's alg entry point
     SegResult seg = segment(img, seeds, params);
     std::printf("max-flow (min-cut capacity) = %lld\n", seg.flow);
@@ -105,15 +103,10 @@ int main(int argc, char** argv)
     Image comp = viz::composite({img, seeds_img, mask_img, boundary_img, cutout_img});
 
     save_png(join(out_dir, "seeds.png"), seeds_img);
-    std::cout<<"saved seeds"<<std::endl;
     save_png(join(out_dir, "mask.png"), mask_img);
-    std::cout<<"saved mask"<<std::endl;
     save_png(join(out_dir, "boundary.png"), boundary_img);
-    std::cout<<"saved boundary"<<std::endl;
     save_png(join(out_dir, "cutout.png"), cutout_img);
-    std::cout<<"saved cutout"<<std::endl;
     save_png(join(out_dir, "composite.png"), comp);
-    std::cout<<"saved composite"<<std::endl;
 
     std::vector<std::pair<std::string, std::string>> gallery = {
         {"composite.png", "Composite strip: original | seeds | mask | boundary | cutout"},

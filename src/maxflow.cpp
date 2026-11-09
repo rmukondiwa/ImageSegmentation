@@ -3,7 +3,6 @@
 #include <cassert>
 #include <algorithm>
 #include <queue>
-#include <iostream>
 
 
 void MaxFlow::initializeGraph(int num_nodes)
@@ -76,19 +75,15 @@ long long MaxFlow::dfs(int u, int t, long long pushed)
 long long MaxFlow::max_flow(int s, int t)
 {
     assert(s != t);
-    std::cout<< "about to start max flow"<<std::endl;
     long long flow = 0;
     int numOfLGraphs = 1;
     while(bfs(s, t))
     {
-        std::cout<< "checking Level-Graph #" << numOfLGraphs<<std::endl;
         std::fill(dfs_iter.begin(), dfs_iter.end(), 0);
         while(true)
         {
-            std::cout<< "u: " << s << "t: " << t<<std::endl;
             long long pushed = dfs(s, t, LLONG_MAX);
             if(pushed == 0) break;
-            std::cout<< "pushed: " << pushed <<std::endl;
             flow += pushed; 
         }
     }

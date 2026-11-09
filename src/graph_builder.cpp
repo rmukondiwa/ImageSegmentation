@@ -6,7 +6,6 @@
 #include <limits>
 #include <algorithm>
 #include <cmath>
-#include <iostream>
 
 
 namespace {
@@ -68,7 +67,6 @@ std::vector<Seed> load_seeds(const std::string& path)
 
 BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const BuildParams& params)
 {
-    std::cout<< "inside build graph"<<std::endl;
     assert(!img.empty());
     BuiltGraph graph;
     graph.width = img.width;

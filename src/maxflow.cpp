@@ -85,10 +85,10 @@ long long MaxFlow::max_flow(int s, int t)
         std::fill(dfs_iter.begin(), dfs_iter.end(), 0);
         while(true)
         {
-            std::cout<< "dfs loop"<<std::endl;
+            std::cout<< "dfs"<<std::endl;
             long long pushed = dfs(s, t, LLONG_MAX);
             if(pushed == 0) break;
-            
+            std::cout<< "pushed: " << pushed <<std::endl;
             flow += pushed;
         }
     }

@@ -89,4 +89,29 @@ namespace{
         return out;
     }
 
+    Image cutout(const Image& originalImg, const SegResult& seg)
+    {
+        Image out(originalImg.width, originalImg.height);
+
+        const int cell = 12;    // checkerboard cell size
+        for(int y = 0; y < originalImg.height; ++y)
+        {
+            for(int x = 0; x<originalImg.width; ++x)
+            {
+                if(is_fg(seg, x, y))
+                {
+                    out.set(x,y,originalImg.r(x,y), originalImg.g(x,y), originalImg.b(x,y));
+                }
+                else
+                {
+                    bool light = ((x/cell) + (y/cell)) %2 == 0;
+                    uint8_t v = light ? 200 : 150;
+                    out.set(x,y,v,v,v);
+                }
+            }
+        }
+
+        return out;
+    }
+
 }

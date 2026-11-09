@@ -133,6 +133,6 @@ int main(int argc, char** argv)
         std::printf("wrote gallery: %s\n", html.c_str());
     }
 
-    
-
+    std::printf("done. artifacts in %s/\n", out_dir.c_str());
+    return 0;
 }

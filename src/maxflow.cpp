@@ -84,8 +84,10 @@ long long MaxFlow::max_flow(int s, int t)
         {
             long long pushed = dfs(s, t, LLONG_MAX);
             if(pushed == 0) break;
-
+            
+            flow += pushed;
         }
     }
 
+    return flow;
 }

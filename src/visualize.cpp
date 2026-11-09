@@ -53,8 +53,8 @@ namespace{
                 }
             }
 
-            return out;
         }
+        return out;
     }
 
     Image mask_image(const SegResult& seg)

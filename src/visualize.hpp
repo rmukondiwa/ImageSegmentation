@@ -16,5 +16,8 @@ namespace viz {
     Image boundary_overlay(const Image& originalImg, const SegResult& seg);
 
     // Keep fg pixels; replace bg with a checkerboard so it reads as "removed".
-    Image coutout(const Image& originalImg, const SegResult& seg);
+    Image cutout(const Image& originalImg, const SegResult& seg);
+
+    // Stitch panels horizontally (padded to the tallest) into one wide image.
+    Image composite(const std::vector<Image>& panels);
 }

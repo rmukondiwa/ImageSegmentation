@@ -114,4 +114,9 @@ namespace{
         return out;
     }
 
+    Image composite(const std::vector<Image>& panels)
+    {
+        
+    }
+
 }

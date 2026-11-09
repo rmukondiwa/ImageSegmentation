@@ -100,6 +100,6 @@ int main(int argc, char** argv)
     Image mask_img = viz::mask_image(seg);
     Image boundary_img = viz::boundary_overlay(img, seg);
     Image cutout_img = viz::cutout(img, seg);
-
+    Image comp = viz::composite({img, seeds_img, mask_img, boundary_img, cutout_img});
 
 }

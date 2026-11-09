@@ -6,6 +6,20 @@ namespace{
     {
         return seg.fg[static_cast<size_t>(y)*seg.width +x];
     }
+
+    // A pixel is on the boundary if any 4-neighbor has the opposite label.
+    bool on_boundary(const SegResult& seg, int x, int y)
+    {
+        bool center = is_fg(seg, x, y);
+        const int dx[] = {1, -1, 0, 0};
+        const int dy[] = {0, 0, 1, -1};
+        for(int k = 0; k<4; ++k)
+        {
+            int neighbor_x = x + dx[k], neighbor_y = y +dy[k];
+            if(neighbor_x < 0 || neighbor_x >= seg.width || neighbor_y<0 || neighbor_y >= seg.height) continue;
+            if(is_fg(seg, neighbor_x, neighbor_y) != center) return true;
+        }
+    }
 } // namespace
 
     Image seed_overlay(const Image& originalImg, const std::vector<Seed>& seeds)
@@ -63,7 +77,7 @@ namespace{
             {
                 if(on_boundary(seg, x, y))
                 {
-                    
+
                 }
             }
         }

@@ -36,5 +36,8 @@ cmake --build build -j
 
 Then open [`results/index.html`](results/index.html) in your browser to view the results.
 
-
+## Seed file format
+Plain text, one `x y label` per line (`label`: `1` = foreground, `0` =
+background). `#` comments and blank lines are ignored. See
+[`data/sample.seeds`](data/sample.seeds).
 

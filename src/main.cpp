@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "graph_builder.hpp"
 #include "image.hpp"
@@ -91,7 +92,7 @@ int main(int argc, char** argv)
 
     std::printf("image %dx%d, %zu seeds, lambda=%.2f sigma=%.2f\n", img.width,
                 img.height, seeds.size(), params.lambda, params.sigma);
-
+    std::cout<<"about to start segmentation"<<std::endl;
     // dinic's alg entry point
     SegResult seg = segment(img, seeds, params);
     std::printf("max-flow (min-cut capacity) = %lld\n", seg.flow);

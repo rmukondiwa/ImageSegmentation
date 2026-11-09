@@ -6,6 +6,7 @@
 #include <limits>
 #include <algorithm>
 #include <cmath>
+#include <iostream>
 
 
 namespace {
@@ -19,7 +20,7 @@ namespace {
     {
         double dr = img.r(x,y) - r;
         double dg = img.g(x,y) - g;
-        double db = img.b(x,y); -b;
+        double db = img.b(x,y) -b;
 
         return std::sqrt(dr * dr + dg*dg + db*db);
     }
@@ -67,6 +68,7 @@ std::vector<Seed> load_seeds(const std::string& path)
 
 BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const BuildParams& params)
 {
+    std::cout<< "inside build graph"<<std::endl;
     assert(!img.empty());
     BuiltGraph graph;
     graph.width = img.width;

@@ -15,4 +15,26 @@ Interactive foreground/background **image segmentation via s-t min-cut** in C++.
 4. Run **max-flow** ([Dinic's](src/maxflow.cpp)). By **max-flow/min-cut duality**, the min cut partitions pixels into foreground (still reachable from `s`) and background (reachable from `t`).
 5. **The cut *is* the segmentation.**
 
+## Build
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build -j
+```
+
+## Run
+
+```bash
+# Full demo: writes all artifacts + results/index.html gallery
+./build/imageSegmentation data/sample.png data/sample.seeds results/ -- sweep
+
+# Tune the smoothness term for a single run
+./build/imageSegmentation data/sample.png data/sample.seeds results/ --lambda 100 --sigma 20
+
+# Flags: --sweep (lambda montage), --lambda N, --sigma N, --no-html
+```
+
+Then open [`results/index.html`](results/index.html) in your browser to view the results.
+
+
 

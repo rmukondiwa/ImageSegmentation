@@ -1,5 +1,7 @@
 #include "visualize.hpp"
 
+#include <fstream>
+
 namespace viz{
 namespace{
     bool is_fg(const SegResult& seg, int x, int y)
@@ -174,5 +176,37 @@ namespace{
         }
         return out;
     }
+
+    bool write_gallery_html(const std::string& path,const std::vector<std::pair<std::string, std::string>>& images, long long flow) {
+        std::ofstream out(path);
+        if (!out) return false;
+        out << "<!doctype html>\n<html lang=\"en\">\n<head>\n"
+            << "<meta charset=\"utf-8\">\n"
+            << "<meta name=\"viewport\" content=\"width=device-width, "
+                "initial-scale=1\">\n"
+            << "<title>dummyMaxFlow Gallery</title>\n"
+            << "<style>\n"
+                "  body{background:#111;color:#eee;font-family:system-ui,sans-serif;"
+                "margin:0;padding:32px;}\n"
+                "  h1{font-weight:600;}\n"
+                "  .meta{color:#9ad;margin-bottom:24px;}\n"
+                "  .grid{display:grid;grid-template-columns:repeat(auto-fit,"
+                "minmax(320px,1fr));gap:24px;}\n"
+                "  figure{margin:0;background:#1b1b1b;border-radius:10px;padding:12px;}"
+                "\n"
+                "  img{width:100%;height:auto;border-radius:6px;display:block;}\n"
+                "  figcaption{margin-top:8px;color:#bbb;font-size:14px;}\n"
+                "</style>\n</head>\n<body>\n"
+            << "<h1>dummyMaxFlow &mdash; s-t min-cut segmentation</h1>\n"
+            << "<div class=\"meta\">max-flow value (= min-cut capacity): " << flow
+            << "</div>\n<div class=\"grid\">\n";
+        for (const auto& [file, caption] : images) {
+            out << "  <figure><img src=\"" << file << "\" alt=\"" << caption
+                << "\"><figcaption>" << caption << "</figcaption></figure>\n";
+        }
+        out << "</div>\n</body>\n</html>\n";
+        return true;
+    }
+
 
 }

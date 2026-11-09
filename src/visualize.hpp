@@ -23,4 +23,8 @@ namespace viz {
 
     // Run segmentation across several lambda values and tile the boundary overlays.
     Image sweep_montage(const Image& originalImg, const std::vector<Seed>& seeds, const std::vector<double>& lambdas, double sigma);
+
+    // Hand-templated static gallery: <img> tags + captions, open in a browser.
+    // `images` are (filename, caption) pairs, filenames relative to the html.
+    bool write_gallery_html(const std::string& path, const std::vector<std::pair<std::string, std::string>>& images, long long flow);
 }

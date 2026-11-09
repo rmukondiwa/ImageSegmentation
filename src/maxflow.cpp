@@ -91,3 +91,8 @@ long long MaxFlow::max_flow(int s, int t)
 
     return flow;
 }
+
+std::vector<bool> MaxFlow::min_cut_side(int s) const
+{
+    
+}

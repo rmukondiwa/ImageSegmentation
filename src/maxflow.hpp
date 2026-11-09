@@ -26,6 +26,10 @@ struct MaxFlow{
 
     long long max_flow(int s, int t);
 
+    // Nodes still reachable from s in the residual graph after saturation.
+    // This is the s-side of the min cut => the segmentation
+    std::vector<bool> min_cut_side(int s) const;
+
     private:
         bool bfs(int s, int t);
         long long dfs(int u, int t, long long pushed);

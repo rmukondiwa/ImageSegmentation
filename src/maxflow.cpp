@@ -52,7 +52,24 @@ bool MaxFlow::bfs(int s, int t)
 long long MaxFlow::dfs(int u, int t, long long pushed)
 {
     if (u==t) return pushed;
-    
+
+    // dfs_iter[u] persists across calls within a phase so we never re-scan dead edges
+    for(int& i = dfs_iter[u]; i< static_cast<int>(adjList[u].size()); ++i)
+    {
+        int id = adjList[u][i];
+        Edge& e = edges[id];
+        if(e.cap>0 && level[e.to] == level[u] +1)
+        {
+            long long got = dfs(e.to, t, std::min(pushed, e.cap));
+            if(got >0)
+            {
+                e.cap -= got;
+                edges[id^1].cap +=got;
+                return got;
+            }
+        }
+    }
+    return 0;
 }
 
 long long MaxFlow::max_flow(int s, int t)

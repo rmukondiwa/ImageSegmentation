@@ -127,4 +127,12 @@ int main(int argc, char** argv)
                         "-> simpler boundary"});
     }
 
+      if (write_html) {
+        std::string html = join(out_dir, "index.html");
+        if (viz::write_gallery_html(html, gallery, seg.flow))
+        std::printf("wrote gallery: %s\n", html.c_str());
+    }
+
+    
+
 }

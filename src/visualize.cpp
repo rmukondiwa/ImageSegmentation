@@ -70,7 +70,7 @@ namespace{
         return out;
     }
 
-    Image boundary_overlay(const Image& originalImg, const SegREsult& seg)
+    Image boundary_overlay(const Image& originalImg, const SegResult& seg)
     {
         Image out = originalImg;
         for(int y = 0; y< seg.height; ++y)
@@ -79,10 +79,14 @@ namespace{
             {
                 if(on_boundary(seg, x, y))
                 {
-
+                    // Bright yellow-green contour, 2px (paint this pixel + right/down)
+                    out.set(x,y,60,255,90);
+                    if(x+1 < out.width) out.set(x+1, y, 60, 255, 90);
                 }
             }
         }
+
+        return out;
     }
 
 }

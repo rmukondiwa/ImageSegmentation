@@ -121,6 +121,10 @@ int main(int argc, char** argv)
     {
         std::vector<double> lambdas = {5, 20, 50, 100, 200, 400};
         Image sweep = viz::sweep_montage(img, seeds, lambdas, params.sigma);
+        save_png(join(out_dir, "sweep.png"), sweep);
+        gallery.push_back({"sweep.png",
+                        "Lambda sweep (5, 20, 50, 100, 200, 400): more smoothness "
+                        "-> simpler boundary"});
     }
 
 }

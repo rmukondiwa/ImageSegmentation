@@ -25,3 +25,13 @@ Image load_image(const std::string& path)
     stbi_image_free(raw);
     return img;
 }
+
+bool save_png(const std::string& path, const Image& img)
+{
+    if (img.empty())
+    {
+        std::fprintf(stderr, "save.png: refusing to write empty image '%s'\n", 
+                    path.c_str());
+        return false;
+    }
+}

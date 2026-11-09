@@ -20,4 +20,7 @@ namespace viz {
 
     // Stitch panels horizontally (padded to the tallest) into one wide image.
     Image composite(const std::vector<Image>& panels);
+
+    // Run segmentation across several lambda values and tile the boundary overlays.
+    Image sweep_montage(const Image& originalImg, const std::vector<Seed>& seeds, const std::vector<double>& lambdas, double sigma);
 }

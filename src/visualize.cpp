@@ -145,4 +145,34 @@ namespace{
         return out;
     }
 
+    Image sweep_montage(const Image& originalImg, const std::vector<Seed>& seeds, const std::vector<double>& lambdas, double sigma)
+    {
+        std::vector<Image> tiles;
+        tiles.reserve(lambdas.size());
+        for (double lam : lambdas) {
+            BuildParams p;
+            p.lambda = lam;
+            p.sigma = sigma;
+            SegResult seg = segment(originalImg, seeds, p);
+            tiles.push_back(boundary_overlay(originalImg, seg));
+        }
+        if (tiles.empty()) return Image{};
+
+        int cols = std::min<int>(3, static_cast<int>(tiles.size()));
+        int rows = (static_cast<int>(tiles.size()) + cols - 1) / cols;
+        const int gap = 6;
+        int tw = originalImg.width, th = originalImg.height;
+        Image out(cols * tw + (cols - 1) * gap, rows * th + (rows - 1) * gap);
+        for (size_t i = 0; i < tiles.size(); ++i) {
+            int c = static_cast<int>(i) % cols;
+            int r = static_cast<int>(i) / cols;
+            int ox = c * (tw + gap), oy = r * (th + gap);
+            const Image& t = tiles[i];
+            for (int y = 0; y < t.height; ++y)
+            for (int x = 0; x < t.width; ++x)
+                out.set(ox + x, oy + y, t.r(x, y), t.g(x, y), t.b(x, y));
+        }
+        return out;
+    }
+
 }

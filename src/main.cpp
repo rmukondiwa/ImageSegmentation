@@ -1,8 +1,9 @@
 // CLI: input image, seed file, output dir, flags.
 //  imageSegmentation <image> <seeds> <out_dir> [--sweep] [--lambda N] [--sigman N]
 //     [--no-html]
-#include <iostream>
+#include <cstdio>
 #include <string>
+#include <vector>
 
 #include "graph_builder.hpp"
 #include "image.hpp"
@@ -108,6 +109,18 @@ int main(int argc, char** argv)
     save_png(join(out_dir, "cutout.png"), cutout_img);
     save_png(join(out_dir, "composite.png"), comp);
 
-    
+    std::vector<std::pair<std::string, std::string>> gallery = {
+        {"composite.png", "Composite strip: original | seeds | mask | boundary | cutout"},
+        {"seeds.png", "Seed scribbles: red = foreground, blue = background (the cut's input)"},
+        {"mask.png", "Binary mask: white foreground, black background"},
+        {"boundary.png", "Boundary overlay (hero shot): min-cut contour on the original"},
+        {"cutout.png", "Foreground cutout: background replaced with a checkerboard"},
+    };
+
+    if(do_sweep)
+    {
+        std::vector<double> lambdas = {5, 20, 50, 100, 200, 400};
+        Image sweep = viz::sweep_montage(img, seeds, lambdas, params.sigma);
+    }
 
 }

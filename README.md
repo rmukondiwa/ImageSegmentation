@@ -26,7 +26,7 @@ cmake --build build -j
 
 ```bash
 # Full demo: writes all artifacts + results/index.html gallery
-./build/imageSegmentation data/sample.png data/sample.seeds results/ -- sweep
+./build/imageSegmentation data/sample.png data/sample.seeds results/ --sweep
 
 # Tune the smoothness term for a single run
 ./build/imageSegmentation data/sample.png data/sample.seeds results/ --lambda 100 --sigma 20

@@ -126,7 +126,7 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
                 {
                     distToFg = std::min(distToFg, color_dist(img, x, y, color[0], color[1], color[2]));
                 }
-                for (const auto& color : fg_colors)
+                for (const auto& color : bg_colors)
                 {
                     distToBg = std::min(distToBg, color_dist(img, x, y, color[0], color[1], color[2]));
                 }
@@ -146,7 +146,7 @@ BuiltGraph build_graph(const Image& img, const std::vector<Seed>& seeds, const B
                 if (denom < 1e-9) denom = 1e9;
 
                 double p_fg = distToBg / denom;
-                double p_bg = distToBg / denom;
+                double p_bg = distToFg / denom;
 
                 cap_s = static_cast<long long>(std::llround(p_fg * DATA_SCALE));
                 cap_t = static_cast<long long>(std::llround(p_bg * DATA_SCALE));

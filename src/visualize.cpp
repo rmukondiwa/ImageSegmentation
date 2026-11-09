@@ -33,5 +33,10 @@ namespace viz{
             return out;
         }
 
+        Image mask_image(const SegResult& seg)
+        {
+            
+        }
+
     }
 }

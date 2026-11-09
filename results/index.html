@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dummyMaxFlow Gallery</title>
+<style>
+  body{background:#111;color:#eee;font-family:system-ui,sans-serif;margin:0;padding:32px;}
+  h1{font-weight:600;}
+  .meta{color:#9ad;margin-bottom:24px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px;}
+  figure{margin:0;background:#1b1b1b;border-radius:10px;padding:12px;}
+  img{width:100%;height:auto;border-radius:6px;display:block;}
+  figcaption{margin-top:8px;color:#bbb;font-size:14px;}
+</style>
+</head>
+<body>
+<h1>dummyMaxFlow &mdash; s-t min-cut segmentation</h1>
+<div class="meta">max-flow value (= min-cut capacity): 21567936</div>
+<div class="grid">
+  <figure><img src="composite.png" alt="Composite strip: original | seeds | mask | boundary | cutout"><figcaption>Composite strip: original | seeds | mask | boundary | cutout</figcaption></figure>
+  <figure><img src="seeds.png" alt="Seed scribbles: red = foreground, blue = background (the cut's input)"><figcaption>Seed scribbles: red = foreground, blue = background (the cut's input)</figcaption></figure>
+  <figure><img src="mask.png" alt="Binary mask: white foreground, black background"><figcaption>Binary mask: white foreground, black background</figcaption></figure>
+  <figure><img src="boundary.png" alt="Boundary overlay (hero shot): min-cut contour on the original"><figcaption>Boundary overlay (hero shot): min-cut contour on the original</figcaption></figure>
+  <figure><img src="cutout.png" alt="Foreground cutout: background replaced with a checkerboard"><figcaption>Foreground cutout: background replaced with a checkerboard</figcaption></figure>
+  <figure><img src="sweep.png" alt="Lambda sweep (5, 20, 50, 100, 200, 400): more smoothness -> simpler boundary"><figcaption>Lambda sweep (5, 20, 50, 100, 200, 400): more smoothness -> simpler boundary</figcaption></figure>
+</div>
+</body>
+</html>

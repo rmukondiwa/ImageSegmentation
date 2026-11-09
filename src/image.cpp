@@ -39,7 +39,9 @@ bool save_png(const std::string& path, const Image& img)
                             img.data.data(), img.width*3);
     if (!ok)
     {
-        std::fprintf(stderr, "save_png: failed to write '%s'\n", path.c_str());
+        std::fprintf(stderr, "save_png: failed to write '%s' (w=%d h=%d data=%zu expected=%zu) errno=%d %s\n",
+             path.c_str(), img.width, img.height, img.data.size(),
+             static_cast<size_t>(img.width)*img.height*3, errno, std::strerror(errno));
         return false;
     }
     return true;

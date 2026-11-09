@@ -92,6 +92,7 @@ int main(int argc, char** argv)
 
     // dinic's alg entry point
     SegResult seg = segment(img, seeds, params);
+    std::printf("max-flow (min-cut capacity) = %lld\n", seg.flow);
     
     
 
